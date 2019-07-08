@@ -1,0 +1,34 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+            <%= @user.name %>
+        </h3>
+        <p>@<%= @user.username %></p>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+    <div class="profile">
+        <h4>プロフィール</h4>
+        <div>
+            <!--ユーザーのプロフィール-->
+        </div>
+        <h4>誕生日</h4>
+        <div>
+            <!--ユーザーの誕生日-->
+        </div>
+        <h4>現在地</h4>
+        <div>
+            <!--ユーザーの現在地-->
+        </div>
+        <h4>マイブラザー<span><!--ユーザーのフォローしている人達の人数--></span></h4>
+        <h4>お気に入り<span><!--気に入った記事の数--></span></h4>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    <h2>記事</h2>
+  </div>
+</div>
