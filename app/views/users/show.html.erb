@@ -11,6 +11,9 @@
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
+    
+    <%= render 'relationships/follow_button', user: @user %>
+    
     <div class="profile">
         <h4>プロフィール</h4>
         <div>
@@ -24,11 +27,21 @@
         <div>
             <!--ユーザーの現在地-->
         </div>
-        <h4>マイブラザー<span><!--ユーザーのフォローしている人達の人数--></span></h4>
+        
+        <%= link_to 'followings', followings_user_path(@user), class: 'btn btn-success btn-block' %>
+        <span class="badge badge-secondary"><%= @count_followings %></span>
+        
+        <%= link_to 'followers', followers_user_path(@user), class: 'btn btn-success btn-block' %>
+        <span class="badge badge-secondary"><%= @count_followers %></span>
+        
         <h4>お気に入り<span><!--気に入った記事の数--></span></h4>
+        <%= link_to '新規投稿', new_article_path, class: 'btn btn-primary btn-block' %>
     </div>
   </aside>
   <div class="col-sm-8">
-    <h2>記事</h2>
+    <h2>記事一覧<span class="badge badge-secondary ml-2"><%= @count_articles %></span></h2>
+    
+    <%= render 'articles/articles', articles: @articles %>
+    
   </div>
 </div>

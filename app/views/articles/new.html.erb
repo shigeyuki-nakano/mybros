@@ -1,0 +1,49 @@
+<div class="text-center">
+    <h1>新規投稿</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        
+        <%= form_with(model: @article, local: true) do |f| %>
+        
+            <%= render 'layouts/error_messages', model: f.object %>
+            
+            <div class="form-group">
+                
+                <%= f.label :title, 'タイトル' %>
+                
+                <%= f.text_field :title, class: 'form-control' %>
+                
+            </div>
+            
+            <div>
+                
+                <%= f.label :title_image, 'タイトルイメージ' %>
+                
+                <%= f.text_field :title_image, class: 'form-control' %>
+                
+            </div>
+            
+            <div>
+                
+                <%= f.label :article, '記事' %>
+                
+                <%= f.text_area :article, class: 'form-control' %>
+                
+            </div>
+            
+            <div>
+                
+                <%= f.label :article_image, '記事の画像' %>
+                
+                <%= f.text_field :article_image, class: 'form-control' %>
+                
+            </div>
+            
+            <%= f.submit '投稿する', class: 'btn btn-primary btn-block mt-3' %>
+            
+        <% end %>
+        
+    </div>
+</div>

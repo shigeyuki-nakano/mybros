@@ -1,0 +1,9 @@
+<% if @count_followers == 0 %>
+
+    <p>まだ誰もいません。</p>
+    
+<% else %>
+    
+    <%= render 'users', users: @followers %>
+    
+<% end %>
