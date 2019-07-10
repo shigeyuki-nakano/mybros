@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        @articles = @user.articles.order(id: :desc).page(params[:id])
+        @articles = @user.articles.order(id: :desc).page(params[:page])
         counts(@user)
     end
     
@@ -28,9 +28,18 @@ class UsersController < ApplicationController
     end
     
     def edit
+        @user = User.find(params[:id])
     end
     
     def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            flash[:success] = 'プロフィールを更新しました'
+            redirect_to user_path(@user)
+        else
+            flash[:destroy] = 'プロフィールを更新できませんでした'
+            redirect_back(fallback_location: root_path)
+        end
     end
     
     def destroy
@@ -49,10 +58,16 @@ class UsersController < ApplicationController
         counts(@user)
     end    
     
+    def likes
+        @user = User.find(params[:id])
+        @favorite_articles = @user.favorite_articles.page(params[:page])
+        counts(@user)
+    end
+    
     private
     
     # ストロングパラメータ
     def user_params
-        params.require(:user).permit(:username, :name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username, :name, :email, :password, :password_confirmation, :introduce, :age, :sex, :address)
     end
 end

@@ -1,5 +1,18 @@
 <p><%= @user.username %>の記事</p>
 <div>
+    
+    <p>
+        <%= image_tag(@article.title_image_url) if @article.title_image.present? %>
+    </p>
+    
+    <p><%= @article.title %></p>
     <p><%= @article.article %></p>
+    
+    <p>
+        <%= image_tag(@article.article_image_url) if @article.article_image.present? %>
+    </p>
+    
     <p><%= @article.created_at %></p>
 </div>
+
+<%= link_to '戻る', :back %>

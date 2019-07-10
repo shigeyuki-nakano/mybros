@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     else
       @ariticles = current_user.articles.order(id: :desc).page(params[:page])
       flash.now[:danger] = '記事の作成に失敗しました'
-      render 'toppages/index'
+      redirect_to root_url
     end
   end
 
@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
   
   private
   
+  # ストロングパラメータ
   def article_params
     params.require(:article).permit(:title, :article, :title_image, :article_image)
   end

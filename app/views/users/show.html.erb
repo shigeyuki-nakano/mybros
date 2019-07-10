@@ -15,27 +15,47 @@
     <%= render 'relationships/follow_button', user: @user %>
     
     <div class="profile">
+        
+        <% if current_user == @user %>
+        
+          <%= link_to 'プロフィールの編集をする', edit_user_path(@user) %>
+          
+        <% end %>
+      
         <h4>プロフィール</h4>
         <div>
-            <!--ユーザーのプロフィール-->
+            <%= @user.introduce %>
         </div>
-        <h4>誕生日</h4>
+        <h4>年齢</h4>
         <div>
-            <!--ユーザーの誕生日-->
+            <%= @user.age %>
+        </div>
+        <h4>性別</h4>
+        <div>
+            <%= @user.sex %>
         </div>
         <h4>現在地</h4>
         <div>
-            <!--ユーザーの現在地-->
+            <%= @user.address %>
         </div>
         
-        <%= link_to 'followings', followings_user_path(@user), class: 'btn btn-success btn-block' %>
-        <span class="badge badge-secondary"><%= @count_followings %></span>
+        <a class="btn btn-success btn-block" href="<%= followings_user_path(@user) %>">
+          フォロー<span class="badge badge-secondary"><%= @count_favorites %></span>
+        </a>
         
-        <%= link_to 'followers', followers_user_path(@user), class: 'btn btn-success btn-block' %>
-        <span class="badge badge-secondary"><%= @count_followers %></span>
+        <a class="btn btn-success btn-block" href="<%= followers_user_path(@user) %>">
+          フォロワー<span class="badge badge-secondary"><%= @count_favorites %></span>
+        </a>
         
-        <h4>お気に入り<span><!--気に入った記事の数--></span></h4>
-        <%= link_to '新規投稿', new_article_path, class: 'btn btn-primary btn-block' %>
+        <a class="btn btn-success btn-block" href="<%= likes_user_path(@user) %>">
+          お気に入り<span class="badge badge-secondary"><%= @count_favorites %></span>
+        </a>
+        
+        <% if current_user == @user %>
+        
+          <%= link_to '新規投稿', new_article_path, class: 'btn btn-primary btn-block' %>
+          
+        <% end %>
     </div>
   </aside>
   <div class="col-sm-8">

@@ -3,18 +3,26 @@
     <% articles.each do |article| %>
         
         <li class="media mb-3">
-            <img class="mr-2 rounded" src="<%= article.title_image %>" alt="タイトルイメージ">
+            <img class="mr-2 rounded" width="100px" height="100px" src="<%= article.title_image %>" alt="タイトルイメージ">
             <div class="media-body">
                 <div>
+                    
                     <%= link_to article.title, article_path(article) %>
+                    
+                </div>
+                
+                <div>
+                    
+                    <%= link_to '@' + article.user.username, user_path(article.user) %>
+                    
                 </div>
                 <div>
-                    <p class="mb-0">
-                        <%= article.article %>
-                    </p>
-                </div>
-                <div>
+                    
                     <%= article.created_at %>
+                    
+                </div>
+                <div>
+                    <%= render 'favorites/like_button', article: article %>
                 </div>
             </div>
         </li>

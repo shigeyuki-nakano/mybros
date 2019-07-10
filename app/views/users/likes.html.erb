@@ -1,0 +1,11 @@
+<% if @count_favorites == 0 %>
+
+    <p>まだお気に入りした投稿がありません。</p>
+    
+<% else %>
+    
+    <%= render 'articles/articles', articles: @favorite_articles %>
+    
+<% end %>
+
+<%= link_to '戻る', :back %>
