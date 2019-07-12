@@ -1,0 +1,79 @@
+body {
+    background-color: #eee;
+}
+
+.container {
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.top {
+    background-image: url("/images/toppage_image.jpg");
+}
+
+.top h1 {
+    color: white;
+}
+
+.top h2 {
+    color: white;
+}
+
+/*いいねの横のバルーン*/
+.balloon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.balloon span.number {
+    color: #777;
+    font-size: 90%;
+    line-height: 2em;
+    padding: 5px 10px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.balloon span.number:after,
+.balloon span.number:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: "";
+    position: absolute;
+    }
+ 
+.balloon span.number:after  {
+    border-right-color: #fff;
+    border-width: 4px;
+    margin-top: -4px
+    }
+ 
+.balloon span.number:before {
+    border-right-color: #ccc;
+    border-width: 5px;
+    margin-top: -5px;
+    }
+
+/*コメントのボタン*/
+.btn-square-pop {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: lightskyblue;/*背景色*/
+  border-bottom: solid 2px cornflowerblue;/*少し濃い目の色に*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+}
+
+.btn-square-pop:active {
+  border-bottom: solid 2px lightskyblue;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}

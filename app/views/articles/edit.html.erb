@@ -1,2 +1,35 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
+<div class="text-center">
+    <h1>編集</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        
+        <%= form_with(model: @article, local: true) do |f| %>
+        
+            <%= render 'layouts/error_messages', model: f.object %>
+            
+            <div class="form-group">
+                
+                <%= f.label :title, 'タイトル' %>
+                
+                <%= f.text_field :title, class: 'form-control' %>
+                
+            </div>
+            
+            <div>
+                
+                <%= f.label :article, '記事' %>
+                
+                <%= f.text_area :article, class: 'form-control' %>
+                
+            </div>
+            
+            <%= f.submit '更新する', class: 'btn btn-primary btn-block mt-3' %>
+            
+        <% end %>
+        
+        <p class="text-danger">※画像の編集はできません</p>
+        
+    </div>
+</div>

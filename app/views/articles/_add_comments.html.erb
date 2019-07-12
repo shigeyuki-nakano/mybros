@@ -1,0 +1,23 @@
+<!--ログインしていればユーザー名表示、していなければ自分で名前を決める。-->
+    <% if logged_in? %>
+    
+      <%= form_with(model: comment, local: true) do |f| %>
+        <%= hidden_field_tag :article_id, @article.id %>
+        <%= f.label 'コメント' %>
+        <%= f.text_area :content, class: 'form-control' %>
+        <%= f.submit "投稿", class: 'btn-square-pop' %>
+      <% end %>
+    
+    <% else %>
+    
+      <%= form_with(model: comment, local: true) do |f| %>
+        <%= hidden_field_tag :article_id, @article.id %>
+        <%= f.label '名前' %>
+        <%= f.text_field :name, class: 'form-control', value: '匿名希望' %>
+        <%= f.label 'コメント' %>
+        <%= f.text_area :content, class: 'form-control' %>
+        <%= f.submit "投稿", class: 'btn-square-pop' %>
+        
+      <% end %>
+    
+    <% end %>

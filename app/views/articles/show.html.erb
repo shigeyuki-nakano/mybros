@@ -1,18 +1,62 @@
-<p><%= @user.username %>の記事</p>
+
+<!--ログインしていなければユーザーを見れないようにする-->
+<% if logged_in? %>
+  <p><%= link_to '@' + @user.username, user_path(@user) %>の記事</p>
+<% end %>
 <div>
-    
-    <p>
-        <%= image_tag(@article.title_image_url) if @article.title_image.present? %>
-    </p>
-    
-    <p><%= @article.title %></p>
-    <p><%= @article.article %></p>
-    
-    <p>
-        <%= image_tag(@article.article_image_url) if @article.article_image.present? %>
-    </p>
-    
-    <p><%= @article.created_at %></p>
+
+  <h1><%= @article.title %></h1>
+
+  <p class='overflow-auto'>
+    <%= image_tag(@article.title_image_url) if @article.title_image.present? %>
+  </p>
+
+  <p>
+    <%= @article.article %>
+  </p>
+
+  <p class='overflow-auto'>
+    <%= image_tag(@article.article_image_url) if @article.article_image.present? %>
+  </p>
+
+  <p><%= @article.created_at.strftime('%Y/%m/%d %H:%M') %></p>
 </div>
 
-<%= link_to '戻る', :back %>
+<% if logged_in? %>
+  <div>
+    <p class='d-inline-block'>
+      この投稿をいいねした<%= link_to 'ユーザー', likes_article_path(@article) %>
+      <div class="balloon">
+        <span class="number"><%= @count_liked_article %></span>
+      </div>
+    </p>
+  </div>
+<% end %>
+
+<% if current_user == @user %>
+
+  <div>
+    <%= link_to 'この投稿を削除する', @article, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-inline-block' %>
+    <%= link_to 'この投稿を編集する', edit_article_path(@article), class: 'btn btn-success btn-inline-block' %>
+  </div>
+
+<% end %>
+
+<div style="margin-top: 20px; margin-bottom: 20px;">
+  <%= link_to '戻る', :back %>
+</div>
+
+<div id="comments" class="border-top" style="padding: 40px;">
+  <h4 style="margin-bottom: 40px;">コメント</h4>
+  <a href="#comment">コメントを書く</a>
+  
+  <!--コメント一覧-->
+  <div style="margin-top: 20px;">
+    <%= render 'comments/comments', comments: @comments %>
+  </div>
+  
+  <!--コメントフォーム-->
+  <div id="comment" class="jumbotron" style="margin-top: 50px;">
+    <%= render 'add_comments', comment: @comment %>
+  </div>
+</div>

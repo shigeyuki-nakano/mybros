@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :require_user_logged_in, except: [:new, :create]
     
     def index
-        @users = User.order(id: :desc).page(params[:page]).per(10)
+        @users = User.order(id: :desc).search(params[:search]).page(params[:page]).per(10)
     end
     
     def show
@@ -37,12 +37,23 @@ class UsersController < ApplicationController
             flash[:success] = 'プロフィールを更新しました'
             redirect_to user_path(@user)
         else
-            flash[:destroy] = 'プロフィールを更新できませんでした'
+            flash[:danger] = 'プロフィールを更新できませんでした'
             redirect_back(fallback_location: root_path)
         end
     end
     
     def destroy
+        @user = User.find(params[:id])
+        @articles = Article.find_by(user_id: params[:id])
+        flash[:success] = '退会完了しました'
+        if @articles == nil
+            @user.destroy
+            redirect_to root_url
+        else
+            @articles.destroy
+            @user.destroy
+            redirect_to root_url
+        end
     end
     
     
@@ -62,6 +73,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @favorite_articles = @user.favorite_articles.page(params[:page])
         counts(@user)
+    end
+    
+    def search
+        @users = User.order(id: :desc).search(params[:search]).page(params[:page]).per(10)
     end
     
     private

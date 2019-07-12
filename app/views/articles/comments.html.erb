@@ -1,0 +1,9 @@
+<!--コメント一覧-->
+  <div style="margin-top: 20px;">
+    <%= render 'comments/comments', comments: @comments %>
+  </div>
+  
+  <!--コメントフォーム-->
+  <div id="comment" class="jumbotron" style="margin-top: 50px;">
+    <%= render 'add_comments', comment: @comment %>
+  </div>

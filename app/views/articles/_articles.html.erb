@@ -3,7 +3,12 @@
     <% articles.each do |article| %>
         
         <li class="media mb-3">
-            <img class="mr-2 rounded" width="100px" height="100px" src="<%= article.title_image %>" alt="タイトルイメージ">
+            
+            <% if article.title_image %>
+                <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="<%= article.title_image %>" alt="タイトルイメージ">
+            <% else %>
+                <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="/assets/default_title_image.png" alt="タイトルイメージ">
+            <% end %>
             <div class="media-body">
                 <div>
                     
@@ -13,12 +18,22 @@
                 
                 <div>
                     
-                    <%= link_to '@' + article.user.username, user_path(article.user) %>
+                    <% if logged_in? %>
+                    
+                        <%= link_to '@' + article.user.username, user_path(article.user) %>
+                        
+                        <% if current_user.following?(article.user) %>
+                        
+                            <span><i class="far fa-laugh-beam"></i></span>
+                            
+                        <% end %>
+                        
+                    <% end %>
                     
                 </div>
                 <div>
                     
-                    <%= article.created_at %>
+                    <%= article.created_at.strftime('%Y/%m/%d %H:%M') %>
                     
                 </div>
                 <div>

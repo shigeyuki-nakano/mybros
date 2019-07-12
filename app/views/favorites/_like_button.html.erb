@@ -1,20 +1,45 @@
-<% if current_user.liked?(article) %>
-    
-    <%= form_with(model: current_user.favorites.find_by(article_id: article.id), local: true, method: :delete) do |f| %>
-    
-        <%= hidden_field_tag :article_id, article.id %>
-        
-        <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-block' %>
-        
-    <% end %>
-    
-<% else %>
+<% if logged_in? %>
 
-    <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
-    
-        <%= hidden_field_tag :article_id, article.id %>
+    <% if current_user.liked?(article) %>
         
-        <%= f.submit 'お気に入りに登録', class: 'btn btn-primary btn-block' %>
+        <div class="like">
+        
+            <%= form_with(model: current_user.favorites.find_by(article_id: article.id), local: true, method: :delete) do |f| %>
+            
+                <%= hidden_field_tag :article_id, article.id %>
+                
+                <%= f.submit 'いいね', class: 'btn btn-danger btn-inline-block' %>
+                
+                <div class="balloon">
+                    
+                    <span class="number">
+                        <%= article.favorites_count %>
+                    </span>
+                    
+                </div>
+                
+            <% end %>
+            
+        </div>
+        
+    <% else %>
+        
+            <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+            
+                <%= hidden_field_tag :article_id, article.id %>
+                
+                <%= f.submit 'いいね', class: 'btn btn-light btn-inline-block' %>
+                
+                <div class="balloon">
+                    
+                    <span class="number">
+                        <%= article.favorites_count %>
+                    </span>
+                    
+                </div>    
+                
+                
+            <% end %>
         
     <% end %>
     

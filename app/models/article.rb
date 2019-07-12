@@ -6,9 +6,9 @@ class Article < ApplicationRecord
   belongs_to :user
   
   validates :title, presence: true, length: { maximum: 50 }
-  validates :article, presence: true, length: { maximum: 500 }
+  validates :article, presence: true, length: { maximum: 1000 }
   
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
-  
+  has_many :comments, dependent: :destroy
 end

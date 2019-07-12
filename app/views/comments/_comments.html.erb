@@ -1,0 +1,81 @@
+
+<!--ログインしていればユーザー情報出力-->
+<% if logged_in? %>
+
+    <ul class='list-unstyled'>
+        
+        <% comments.each do |comment| %>
+            
+            <li class="media mb-3 border-bottom">
+                
+                    
+            <!--ログイン済みのユーザーがコメントしたかどうか-->
+            <% if comment.name %>
+                <img class="mr-2 rounded border shadow-sm" width="100px" height="100px" src="/assets/user_icon.png" alt="アイコン">
+                <div class="media-body">
+                    <div>
+                        <p><%= comment.name %></p>
+                    </div>
+            <% else %>
+                <img class="mr-2 rounded shadow-sm" src="<%= gravatar_url(comment.user, {size: 100 }) %>" alt="アイコン">
+                <div class="media-body">
+                    <div>
+                        <p><%= comment.user.name %>
+                            <span>
+                                <%= link_to '@' + comment.user.username, user_path(comment.user) %>
+                            </span>
+                        </p>
+                    </div>
+            <% end %>
+                    <div>
+                        <%= comment.content %>
+                    </div>
+                    <div>
+                        <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </div>
+                    <% if current_user == @article.user %>
+                        <!--削除ボタン-->
+                        <%= link_to 'このコメントを削除する', comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-inline-block' %>
+                    <% end %>
+                </div>
+            </li>
+            
+        <% end %>
+        
+    </ul>
+
+<% else %>
+
+    <ul class='list-unstyled'>
+        
+        <% comments.each do |comment| %>
+            
+            <li class="media mb-3 border-bottom">
+            
+            <% if comment.name %>
+                <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="/assets/user_icon.png" alt="アイコン">
+                <div class="media-body">
+                    <div>
+                        <p><%= comment.name %></p>
+                    </div>
+            <% else %>
+                <img class="mr-2 rounded shadow-sm" src="<%= gravatar_url(comment.user, {size: 100 }) %>" alt="アイコン">
+                <div class="media-body">
+                    <div>
+                        <p><%= comment.user.name %></p>
+                    </div>
+            <% end %>   
+                    <div>
+                        <%= comment.content %>
+                    </div>
+                    <div>
+                        <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                    </div>
+                </div>
+            </li>
+            
+        <% end %>
+        
+    </ul>
+
+<% end %>

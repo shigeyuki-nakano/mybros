@@ -10,11 +10,21 @@ Rails.application.routes.draw do
       member do
          get :followings
          get :followers
-         get :likes
+         get :likes  # 自分がいいねした投稿一覧用
+      end
+      collection do
+         get :search
       end
    end
    
-   resources :articles, except: [:index]
+   resources :articles, except: [:index] do
+      member do
+         get :likes  # 投稿をいいねしたユーザー一覧用
+         get :comments
+      end
+   end
+   
    resources :relationships, only: [:create, :destroy]
    resources :favorites, only: [:create, :destroy]
+   resources :comments, only: [:create, :destroy]
 end

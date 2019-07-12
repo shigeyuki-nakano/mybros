@@ -40,11 +40,11 @@
         </div>
         
         <a class="btn btn-success btn-block" href="<%= followings_user_path(@user) %>">
-          フォロー<span class="badge badge-secondary"><%= @count_favorites %></span>
+          フォロー<span class="badge badge-secondary"><%= @count_followings %></span>
         </a>
         
         <a class="btn btn-success btn-block" href="<%= followers_user_path(@user) %>">
-          フォロワー<span class="badge badge-secondary"><%= @count_favorites %></span>
+          フォロワー<span class="badge badge-secondary"><%= @count_followers %></span>
         </a>
         
         <a class="btn btn-success btn-block" href="<%= likes_user_path(@user) %>">

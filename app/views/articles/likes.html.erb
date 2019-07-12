@@ -1,0 +1,11 @@
+<% if @count_liked_article == 0 %> 
+
+    <p>まだいいねされていません。</p>
+    
+<% else %>
+
+    <%= render 'users/users', users: @users %>
+    
+<% end %>
+
+<%= link_to '戻る', :back %>
