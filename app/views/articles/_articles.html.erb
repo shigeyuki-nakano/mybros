@@ -4,7 +4,7 @@
         
         <li class="media mb-3">
             
-            <% if article.title_image %>
+            <% if !!article.title_image %>
                 <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="<%= article.title_image %>" alt="タイトルイメージ">
             <% else %>
                 <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="/assets/default_title_image.png" alt="タイトルイメージ">

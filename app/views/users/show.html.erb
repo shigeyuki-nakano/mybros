@@ -24,7 +24,7 @@
       
         <h4>プロフィール</h4>
         <div>
-            <%= @user.introduce %>
+            <%= raw(nl2br(@user.introduce)) %>
         </div>
         <h4>年齢</h4>
         <div>
@@ -36,7 +36,7 @@
         </div>
         <h4>現在地</h4>
         <div>
-            <%= @user.address %>
+            <%= raw(nl2br(@user.address)) %>
         </div>
         
         <a class="btn btn-success btn-block" href="<%= followings_user_path(@user) %>">

@@ -14,26 +14,25 @@
                 <img class="mr-2 rounded border shadow-sm" width="100px" height="100px" src="/assets/user_icon.png" alt="アイコン">
                 <div class="media-body">
                     <div>
-                        <p><%= comment.name %></p>
+                        <%= comment.name %>
                     </div>
             <% else %>
                 <img class="mr-2 rounded shadow-sm" src="<%= gravatar_url(comment.user, {size: 100 }) %>" alt="アイコン">
                 <div class="media-body">
                     <div>
-                        <p><%= comment.user.name %>
-                            <span>
-                                <%= link_to '@' + comment.user.username, user_path(comment.user) %>
-                            </span>
-                        </p>
+                        <%= comment.user.name %>
+                        <span>
+                            <%= link_to '@' + comment.user.username, user_path(comment.user) %>
+                        </span>
                     </div>
             <% end %>
-                    <div>
-                        <%= comment.content %>
+                    <div class="text-wrap">
+                        <p><%= raw(nl2br(comment.content)) %></p>
                     </div>
                     <div>
                         <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
                     </div>
-                    <% if current_user == @article.user %>
+                    <% if current_user == comment.user %>
                         <!--削除ボタン-->
                         <%= link_to 'このコメントを削除する', comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-inline-block' %>
                     <% end %>
@@ -56,17 +55,17 @@
                 <img class="mr-2 rounded shadow-sm" width="100px" height="100px" src="/assets/user_icon.png" alt="アイコン">
                 <div class="media-body">
                     <div>
-                        <p><%= comment.name %></p>
+                        <%= comment.name %>
                     </div>
             <% else %>
                 <img class="mr-2 rounded shadow-sm" src="<%= gravatar_url(comment.user, {size: 100 }) %>" alt="アイコン">
                 <div class="media-body">
                     <div>
-                        <p><%= comment.user.name %></p>
+                        <%= comment.user.name %>
                     </div>
             <% end %>   
                     <div>
-                        <%= comment.content %>
+                        <p><%= raw(nl2br(comment.content)) %></p>
                     </div>
                     <div>
                         <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>

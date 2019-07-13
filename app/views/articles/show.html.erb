@@ -7,16 +7,16 @@
 
   <h1><%= @article.title %></h1>
 
-  <p class='overflow-auto'>
-    <%= image_tag(@article.title_image_url) if @article.title_image.present? %>
+  <p>
+    <%= image_tag(@article.title_image_url, class: 'img-fluid') if @article.title_image.present? %>
   </p>
 
   <p>
-    <%= @article.article %>
+    <%= raw(nl2br(@article.article)) %>
   </p>
-
-  <p class='overflow-auto'>
-    <%= image_tag(@article.article_image_url) if @article.article_image.present? %>
+ 
+  <p>
+    <%= image_tag(@article.article_image_url, class: 'img-fluid') if @article.article_image.present? %>
   </p>
 
   <p><%= @article.created_at.strftime('%Y/%m/%d %H:%M') %></p>

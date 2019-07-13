@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     flash[:success] = "コメントを削除しました"
-    redirect_to article_path(@article)
+    redirect_to root_url
   end
   
   private
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   end
   
   def correct_user
-    @comment = Article.comments.find_by(id: params[:id])
+    @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to root_url
     end
