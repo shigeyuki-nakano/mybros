@@ -1,6 +1,19 @@
 <div class="top">
     <h1>マイブロへようこそ！</h1>
     <h2>みんなで話題を共有しよう!</h2>
+    <div class="introduce jumbotron">
+        <h3>マイブロとは？</h3>
+        <ul>
+        <li>手軽にツイッター感覚でブログを始められるソーシャルネットワークサービスです。</li>
+        <li>ログインをすれば記事の投稿、気に入った投稿にいいねなどできます。<br />
+            ※ログインしなくても記事へのコメントはできます！</li>
+        
+        </ul>
+        <h4 style="margin-bottom: 20px;">今すぐ始めましょう！</h4>
+        <%= link_to '新規登録', new_user_path, class: 'btn btn-primary btn-inline-block' %>
+        <span>または</span>
+        <%= link_to 'ログイン', login_path, class: 'btn btn-success btn-inline-block' %>
+    </div>
 </div>
 <div>
     <%= render 'articles/articles', articles: @articles %>
